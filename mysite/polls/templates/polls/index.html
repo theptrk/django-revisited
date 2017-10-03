@@ -1,3 +1,4 @@
+<h1>Polls</h1>
 {% if latest_questions_list %}
     <ul>
         {% for question in latest_questions_list %}
@@ -10,5 +11,5 @@
         {% endfor %}
     </ul>
 {% else %}
-    <p> No polls are available </p>
+    <p> No polls are available. </p>
 {% endif %}

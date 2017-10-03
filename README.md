@@ -62,13 +62,32 @@ def index(request):
 # assume Question is a model, polls is my app name
 def index(request):
     list = Question.objects.order_by('pub_date')[:5]
-    return redner(request, 'polls/index.html', {list: list})
+    return render(request, 'polls/index.html', {list: list})
 
 ```
 ```jinja
 # polls/templates/polls/index.html
 {% for q in list %}
-  {{q.attribute1}}
-  {{q.attribute2}}
+  {{q.attribute1}} -- {{q.attribute2}}
 {% endfor %}
 ```
+
+## tests
+```python
+# to run tests
+python manage.py test app_name
+
+# <app_name>/tests.py
+
+# t>he testing suite will run all classes that subclass TestCase
+from django.test import TestCase
+
+class YourTests(TestCase):
+    def test1(self):
+        # do testing
+        self.assertEqual(some_expression, some_expression)
+        self.assertContains(response, some_text)
+        self.assertQuerysetEqual(
+            response.context['some_queryset'], 
+            ['<Question: Past question>']
+        )
